@@ -1,0 +1,8 @@
+    public static int simpleArraySum(List<Integer> ar) {
+        int total = 0;
+        for (Integer n : ar) {
+            total += n;
+        }
+        return total;
+
+    }
