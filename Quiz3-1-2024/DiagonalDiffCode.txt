@@ -1,0 +1,16 @@
+public static int diagonalDifference(List<List<Integer>> arr) {
+        int total_main = 0;
+        int total_opp = 0;
+        int size = arr.size();
+        for (int i = 0; i < size; i++) {
+            total_main += arr.get(i).get(i);
+            total_opp += arr.get(i).get(size - i - 1);
+        }
+        int total = total_main - total_opp;
+        if (total < 0) {
+            return total * -1;
+        } else {
+            return total;
+        }
+
+    }

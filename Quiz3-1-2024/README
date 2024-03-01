@@ -1,0 +1,7 @@
+Analysis of DiagonalDifference
+Time: This is O(n) or linear time, as I only loop through through
+the array once. (technically the addition operations cost extra
+depending on size of input ints but I don't think you want that)
+Space: This has constant space or O(1) because I only use 3 extra
+variable, all of which are ints, which do not depend on the size
+of the input array.
