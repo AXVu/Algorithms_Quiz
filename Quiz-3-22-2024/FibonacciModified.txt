@@ -1,0 +1,14 @@
+public static long fibAlt(int t1, int t2, int n) {
+        if (n == 1) {
+            return t1;
+        } else if (n == 2) {
+            return t2;
+        } else {
+            long tm1 = fibonacciModified(t1,t2,n-1);
+            return fibonacciModified(t1, t2, n-2) + tm1 * tm1;
+        }
+    }
+
+    public static int fibonacciModified(int t1, int t2, int n) {
+        return (int) fibAlt(t1, t2, n);
+    }

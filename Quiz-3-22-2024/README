@@ -1,0 +1,2 @@
+plusMinus has a runtime complexity O(n), because it iterates through the array once
+it has a space complexity O(1) because only 3 extra variables are used
