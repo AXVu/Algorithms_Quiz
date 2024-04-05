@@ -1,0 +1,7 @@
+insertionSort2 Analysis:
+Time: insertionSort2 has a runtime complexity O(n^2), because at worst case for each element it will have
+to trace back to the beginning. This would make the runtime of the first time 1, the second 2, and so on,
+which we know is (n*(n+1))/2, or O(n^2).
+Space: The space complexity of this is O(n^2), because each loop I make a new String to represent the array
+that string is dependent on the length of the array. So, using n space n times results in n^2 space complexity.
+If that wasn't the case, it would be constant space because the only auxillary variables are sorting and point.
