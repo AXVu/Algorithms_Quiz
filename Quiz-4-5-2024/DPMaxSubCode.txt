@@ -1,0 +1,26 @@
+public static List<Integer> maxSubarray(List<Integer> arr) {
+        int[] maxSeq = new int[arr.size() + 1];
+        int[] maxSar = new int[arr.size() + 1];
+        
+        maxSeq[arr.size()] = arr.get(arr.size()-1);
+        maxSar[arr.size()] = arr.get(arr.size()-1);
+        int maxStart = arr.size();
+        int highest = arr.get(arr.size()-1);
+        for (int i = arr.size()-1; i >= 0; i++) {
+            if (arr.get(i) >= 0) {
+                maxSar[i] += arr.get(i);
+            } else if (arr.get(i) > highest) {
+                highest = arr.get(i);
+            }
+            
+            // Check for subsequnce
+            // Ran out of time, but use max start to
+            // keep track of the max max sub array starting
+            // at a given point and the maxSeq array to track
+            // what that number is
+        }
+        
+        List<Integer> answer = new ArrayList<>();
+        answer.add(maxSar[0], maxSeq[0]);
+        return answer;
+     }
