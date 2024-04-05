@@ -1,0 +1,47 @@
+public static int[] maximize(List<Integer> arr, boolean isSar, boolean hasTaken) {
+         if (arr.size() == 1) {
+             int[] min = {arr.get(0), arr.get(0)};
+             return min;
+         }
+         int[] not;
+        boolean valid = isSar;
+        if (hasTaken) {
+            not = maximize(arr.subList(1, arr.size()), false, hasTaken);
+            valid = false;
+        } else {
+            not = maximize(arr.subList(1, arr.size()), isSar, hasTaken);
+        }
+        int[] take = maximize(arr.subList(1, arr.size()), isSar, true);
+        
+        take[0] += arr.get(0);
+        take[1] += arr.get(0);
+        
+        
+        int maxSar;
+        if (isSar) {
+            if (valid) {
+                maxSar = Math.max(take[1], not[1]);
+            } else {
+                maxSar = take[1];
+            }
+            
+            
+        } else {
+            maxSar = -1000001;
+        }
+        
+        
+        int maxSeq = Math.max(take[0], not[0]);
+        
+        int[] f = {maxSar, maxSeq};
+        return f;
+     }
+
+    public static List<Integer> maxSubarray(List<Integer> arr) {
+        int[] f = maximize(arr, true, false);
+        List<Integer> a = new ArrayList<>();
+        a.add(f[0]);
+        a.add(f[1]);
+        return a;
+
+    }
