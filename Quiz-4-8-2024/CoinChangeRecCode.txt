@@ -1,0 +1,35 @@
+public static long numWays(long n, List<Long> c, int index) {
+        if (index == c.size()) {
+            if (n == 0) {
+                return 1;
+            } else {
+                return 0;
+            }
+        }
+        if (n < 0) {
+            return 0;
+        }
+        long ways = 0;
+        ways += numWays(n-c.get(index), c, index);
+        ways += numWays(n, c, index+1);
+        return ways;
+    }
+
+    public static long getWays(int n, List<Long> c) {
+        long[][] ways = new long[n+1][c.size()+1];
+        int[] coins = new int[c.size()];
+        for (int i = 0; i < c.size(); i++) {
+            ways[0][i] = 1;
+            coins[i] = c.get(i).intValue();
+        }
+        
+        for (int i = 1; i < n+1; i++) {
+            for (int j = c.size()-1; j >= 0; j--) {
+                if (i >= c.get(j)) {
+                    ways[i][j] += ways[i - coins[j]][j];
+                }
+                ways[i][j] += ways[i][j+1];
+            }
+        }
+        return ways[n][0];
+    }
