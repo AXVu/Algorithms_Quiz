@@ -1,0 +1,23 @@
+public static List<Integer> LCS(List<Integer> a, int i, List<Integer> b, int j, int last) {
+        if (i == a.size()) {
+            return new ArrayList<Integer>();
+        } else if (j == b.size()) {
+            return LCS(a, i+1, b, last, last);
+        }
+        List<Integer> has = new ArrayList<Integer>();
+        List<Integer> not = new ArrayList<Integer>();
+        if (a.get(i).equals(b.get(j))) {
+            has = LCS(a, i+1, b, j+1, j+1);
+            has.add(0, a.get(i));
+        }
+        not = LCS(a, i, b, j+1, last);
+        if (has.size() > not.size()) {
+            return has;
+        }
+        return not;
+    }
+
+public static List<Integer> longestCommonSubsequence(List<Integer> a, List<Integer> b) {
+        return LCS(a, 0, b, 0, 0);
+
+    }

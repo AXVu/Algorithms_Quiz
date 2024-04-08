@@ -1,0 +1,32 @@
+Time: This has a time complexity of O(2^(n+c)), where n is the target number and c is the number of coin types
+This is because the maximum recursion depth is n+c, this is the case where it goes through every coin type
+and each coin selection reduces n by 1. The recursion tree width is 2^i, where i is depth, and each node takes
+constant time to compute, which gives us the final O(2^(n+c))
+Space: This also has a space complexity of O(2^(n + c ^ 2)) if we count having to pass c through to every function,
+although this could be made much smaller by saving c to a local variable, which would result in just O(2^(n+c)), where
+each recursive call uses constant space, similar to the time analysis.
+
+My recursive definition is as follows:
+Base cases: Overshot n -> return 0; Got exactly n=0 -> return 1; Ran out of coins -> return 0;
+Otherwise: ways <- moves to next coin type + stays on this coin type and subtract coin value from n
+
+The subproblem this is solving is whether or not to take a certain coin into the count.
+
+LCS:
+Recursive definition:
+Base cases:
+i > len(a)
+return new list
+Otherwise:
+Check if j > len(b), if so recurse and increment i
+Otherwise:
+Check if a[i] = b[j], if so recurse, increment both i and j, then add a[i] to the resulting list
+recurse, incrementing j
+Check which of  the previous two lists are greater and return that one
+
+The subproblem this is solving is whether or not to include a certian number in the subsequence, which is decided by
+which sublist is greater.
+
+My dynamic definition is slightly different, if I did it the same way as recursion it likely would have
+not passed the time checks. I instead track the length of the longest common subsequence at a given i and j and then later
+build the subsequence using that information. In essence they are the same though.
