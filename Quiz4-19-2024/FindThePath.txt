@@ -1,0 +1,35 @@
+FTP(a, queries)
+    distances <- empty list
+    for each query in queries
+        (x1,y1),(x2,y2) <- query
+        visited <- false in the shape of a (a 2d matrix)
+        visited[y1,x1] <- true
+        priority <- empty list
+        push (x1,y1,a[y1,x1]) -> priority           // a is set up to be row major, so the row number (y) comes first.
+                                                    // Third element is total distance
+        while priority is not empty
+            c,dist <- take min dist from priority       // if no absolute min take leftmost min. c is the coordinates.
+            if c is query                          // checking if c is the endpoint
+                push (dist) -> distances
+                break                             // If you find the endpoint, stop looking and add the distance to a
+            for each neighboring cell (xa,ya)     // assuming only valid cells are checked when using the term neighboring
+                if (xa,ya) not visited
+                    push (xa,ya, dist + a[ya,xa]) -> priority
+                    visited[ya,xa] <- true
+    return a
+
+
+High-level:
+For each query, I am creating a matrix to check for having visited cells and an array to track the "current paths".
+I am using the array as a priority queue essentially.
+The starting cell's x,y and value are pushed to the priority array. Also mark it as visited
+In each iteration of the while loop, the cell with the lowest total distance is pulled from array.
+First, check if we've finished the path, and if so insert the distance travelled into the answer(distances) array and end this loop.
+Otherwise, check all neighbors to see if they've been visited. Add all ones that haven't been visited to the priority array
+and add the current distance to their values to package with it.
+
+Higher level:
+I am using a modified breadth first search, where instead of just using a queue, I instead go to the cell with the
+lowest total distance to it from the origin . This makes sure that every cell I insert into the priority array has
+the lowest possible distance to it. This also means that once the endpoint is found, it will be from the lowest possible
+distance to it. This is repeated for each query.

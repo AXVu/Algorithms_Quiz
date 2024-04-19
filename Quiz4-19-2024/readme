@@ -1,0 +1,13 @@
+staircase has a time complexity of O(n^2). This is because my outer for loop iterates n times, and within it the for loops run
+for another combined n times every loop. So n*n = n^2
+staircase has a space complexity of O(1). This is because the only auxillary variables are the ones used in the for loops,
+of which there are only i and j that get re-used. If you think of each loop's j as an independent variable, it could be argued
+that this has a complexity of O(n).
+
+Find the path's time complexity is O(E*n^2*m^2). 
+In the worst case, the while loop will occur n*m times per query, where n is the height and m is the width.
+In each iteration of the while loop, it has to take the minimum element of priority, which takes n*m time as well because it has
+to search through each element of priority, and priority can have O(n*m) many cells inside of it. (it of couse can never have all
+of those cells in it at one time, but it does scale with both n and m). Pushing to priority, checking if you've reached the end, and
+checking neighbors are all O(1) time. Checking neighbors is constant only because this is a matrix, if it were a graph it would be O(n)
+time at least. So for each query the time is O(n^2*m^2), which we multiply by our number of queries, E to get the final runtime.
